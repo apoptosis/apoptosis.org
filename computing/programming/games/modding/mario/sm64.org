@@ -1,0 +1,5 @@
+#+title: Super Mario 64 Modding
+* Resources
+- https://gitea.nek0.eu/nek0/nixpkgs/commit/f2e290e9e951dec0906e36e61ebbb06b3f231b3b
+- https://github.com/CrashOveride95/ultrasm64
+- https://github.com/n64decomp/sm64

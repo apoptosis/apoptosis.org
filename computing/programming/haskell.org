@@ -1,0 +1,415 @@
+#+title: Haskell
+* Syntax Guide
+** Variables
+Defining
+#+begin_src haskell
+  a = 10
+  b = "foo"
+#+end_src
+
+Letting
+#+begin_src haskell
+  let x = 5
+      y = 10
+  in x + y
+#+end_src
+
+Where-ing
+#+begin_src haskell
+  x + y
+  where x = 5
+        y = 10
+#+end_src
+
+** Function Basics
+Defining
+#+begin_src haskell
+  add x y = x + y
+#+end_src
+
+Calling
+#+begin_src haskell
+  total = add 5 10 -- 15
+#+end_src
+
+Partial Application
+#+begin_src haskell
+  inc = add 1
+  total = inc 5 -- 6
+#+end_src
+
+Anonymous Functions
+#+begin_src haskell
+  (\x y -> x + y)
+#+end_src
+
+Infixing
+#+begin_src haskell
+  total = 5 `add` 10 -- 15
+#+end_src
+
+Currying
+#+begin_src haskell
+  incChar = chr . add 1 . ord
+  incChar 'a' -- 'b'
+#+end_src
+
+** Operators
+Calling
+#+begin_src haskell
+  total = 2 + 2 -- 4
+#+end_src
+
+Prefixing
+#+begin_src haskell
+  total = (+) 2 2 -- 4
+#+end_src
+
+Sectioning (partially apply second/rhs argument)
+#+begin_src haskell
+  divideBy2 = (/ 2)
+  total = divideBy2 10 -- 5
+#+end_src
+
+** Lists
+Defining
+#+begin_src haskell
+  words = ["foo", "bar", "faz", "boz"]
+#+end_src
+
+Ranges
+#+begin_src haskell
+  oneToTen = [1 .. 10]
+  aToZ = ['a' .. 'z']
+#+end_src
+
+Indexing
+#+begin_src haskell
+  third = words !! 2 -- "faz"
+#+end_src
+
+Concatenating
+#+begin_src haskell
+  otherWords = words ++ ["fop", "fob"]
+#+end_src
+
+Prepending
+#+begin_src haskell
+  oneMoreWord = "baz" : otherWords
+#+end_src
+
+Tips
+#+begin_src haskell
+  first = head [1, 2, 3] -- 1
+  last  = tail [1, 2, 3] -- 3
+#+end_src
+
+Slices
+#+begin_src haskell
+  firstTwo = take 2 [1, 2, 3] -- [1, 2]
+  lastTwo  = drop 1 [1, 2, 3] -- [2, 3]
+#+end_src
+
+Splitting
+#+begin_src haskell
+  splitAt 5 [1..10] -- ([1,2,3,4,5],[6,7,8,9,10])
+  splitAt 10 ['a'..'z'] -- ("abcdefghij","klmnopqrstuvwxyz")
+#+end_src
+
+Pattern Matching
+#+begin_src haskell
+  (x : _) = [1, 2, 3] -- 1
+  (_ : xs) = [1, 2, 3] -- [2, 3]
+  [a, b, c] = [1, 2, 3]
+#+end_src
+
+List Comprehensions
+#+begin_src haskell
+  [ toUpper x | x <- ['a'..'c'] ] -- "ABC"
+  [ x * x | x <- [1..10], (mod x 2) == 0 ] -- [4,16,36,64,100]
+#+end_src
+
+** Strings (are just [Char])
+=type String = [Char]=
+
+Defining
+#+begin_src haskell
+  -- these are the same
+  foo = "bar" -- String
+  foo = ['b','a','r'] -- [Char]
+#+end_src
+
+Printing
+#+begin_src haskell
+  -- print almost anything
+  print "Hello World"
+  print (53, "hello")
+
+  -- print String specifically
+  putStr "Hello World" -- no newline
+  putStrLn "!!!" -- newline added
+#+end_src
+
+List Equivalent Operations
+#+begin_src haskell
+  -- these work the same as lists
+  -- because String is [Char]
+  third = "abcde" !! 2 -- 'c'
+  merged = "foo" ++ "bar" -- "foobar"
+  prefixed = '$' : "10.00" -- "$10.00"
+  first = head "abc" -- 'a'
+  last = tail "abc" -- 'c'
+  firstTwo = take 2 "abc" -- "ab"
+  lastTwo = drop 1 "abc" -- "bc"
+#+end_src
+
+** Tuples
+Defining
+#+begin_src haskell
+  point = (4, 23)
+#+end_src
+
+Destructuring
+#+begin_src haskell
+  (x, y) = point
+#+end_src
+
+Accessing
+#+begin_src haskell
+  x = fst point
+  y = snd point
+#+end_src
+
+** Product Types
+Defining
+#+begin_src haskell
+  data Person = Person String String Int
+#+end_src
+
+Constructing
+#+begin_src haskell
+  joe = Person "Joe" "Shmoe" 42
+#+end_src
+
+Destructuring
+#+begin_src haskell
+  Person first last age = joe
+#+end_src
+
+Deriving
+#+begin_src haskell
+  data Person = Person String String Int deriving (Show, Eq)
+#+end_src
+
+** Sum Types
+Defining
+#+begin_src haskell
+  data Make = Ford | Toyota | Tesla
+  data Airline = American | Southwest | Delta
+  data Vehicle = Car Make | Plane Airline
+#+end_src
+
+Constructing
+#+begin_src haskell
+  car = Car Tesla
+  plane = Plane Southwest
+#+end_src
+
+** Advanced Functions
+
+Guards
+#+begin_src haskell
+  isItTwo 2 = True
+  isItTwo _ = False
+
+  isItTwo 2 -- True
+  isItTwo 10 -- False
+#+end_src
+
+Pattern Matching Arguments
+#+begin_src haskell
+  isPlane (Plane _) = True
+  isPlane _ = False
+
+  isPlane car -- False
+  isPlane plane -- True
+#+end_src
+
+Pattern Matching Cases
+#+begin_src haskell
+  isDelta (Plane airline) =
+    case airline of
+      Delta -> True
+      _ -> False
+
+  isDelta plane -- False
+  isDelta (Plane Delta) -- True
+#+end_src
+
+Recursive Functions
+#+begin_src haskell
+  fib 0 = 0 -- base case
+  fib 1 = 1 -- base case
+  fib x = fib (x - 1) + fib (x - 2)
+#+end_src
+
+Higher-order Functions
+#+begin_src haskell
+  map _ [] = [] -- base case
+  map f (x:xs) = f x : map f xs
+
+  filter _ [] = []
+  filter f (x:xs)
+    | f x       = x : (filter f xs)
+    | otherwise = filter f xs
+#+end_src
+
+Point-free Functions
+#+begin_src haskell
+  -- these are the same
+  upperFirstFive xs = map toUpper (take 5 xs)
+  upperFirstFive = map toUpper . take 5 -- no declared args
+#+end_src
+
+** Useful Operators
+$ :: (a -> b) -> a -> b
+=f $ a = f a=
+#+begin_src haskell
+  -- these are the same
+  foo (bar 10)
+  foo $ bar 10
+#+end_src
+
+& :: a -> (a -> b) -> b
+=a & f = f a=
+#+begin_src haskell
+  map toUpper "abcdefg" & take 3 --- "ABC"
+#+end_src
+
+
+* Algebra Guide
+
+** Laws
+*** Identity
+The operation over the id function should do the same as the id function
+#+begin_src haskell
+  fmap id = id
+#+end_src
+
+*** Identity Value
+A value is the "identity value" of an operation, if it turns that operation into the identity function:
+#+begin_src haskell
+  0 + 10 -- 10, 0 is identity for addition
+  1 * 10 -- 10, 1 is identity for multiplication
+  [] ++ [1,2,3] -- [1,2,3], [] is identity for concatenation
+#+end_src
+
+*** Associativity
+Arguments can be regrouped/re-parenthesized arbitrarily
+
+Addition is "associative":
+#+begin_src haskell
+  (10 + 5) + 1 -- 16
+  10 + (5 + 1) -- 16
+#+end_src
+
+Subtraction is not:
+#+begin_src haskell
+  (10 - 5) - 1 -- 4
+  10 - (5 - 1) -- 6
+#+end_src
+
+*** Commutativity
+Arguments can be rearranged arbitrarily
+
+Multiplication is "commutative":
+#+begin_src haskell
+  10 * 2 -- 20
+  2 * 10 -- 20
+#+end_src
+
+Division is not:
+#+begin_src haskell
+  10 / 2 -- 10
+  2 / 10 -- .2
+#+end_src
+
+Neither is concatenation:
+#+begin_src haskell
+  "abc" ++ "xyz" -- "abcxyz"
+  "xyz" ++ "abc" -- "xyzabc"
+#+end_src
+
+*** Compositional
+#+begin_src haskell
+  fmap (f . g) = fmap f . fmap g
+#+end_src
+
+*** Homomorphic
+Preserves the "structure" of an applied value
+  #+begin_src haskell
+    f = (* 2)
+    x = 10
+    pure f <*> pure x :: Maybe Integer
+    -- Just 20
+    pure (f x) :: Maybe Integer
+    -- Just 20
+  #+end_src
+
+*** Interchangable
+#+begin_src haskell
+  u = Just (* 2)
+  y = 10
+  u <*> pure y
+  -- Just 20
+  pure ($ y) <*> u
+  -- Just 20
+#+end_src
+
+  
+** Typeclasses
+
+
+Diagram: https://wiki.haskell.org/File:Typeclassopedia-diagram.png
+
+*** Semigroup
+- is [[Associativity][associative]]
+
+*** Monoid
+- has an identity value
+- is [[Associativity][associative]] (from [[Semigroup]])
+
+*** Functor
+- has [[Identity]]
+- is [[Compositional]]
+
+*** Applicative
+- implements =pure=
+  #+begin_src haskell
+    pure 10 :: Maybe Integer
+    -- Just 10
+  #+end_src
+- implements =ap= aka =<*>=
+  #+begin_src haskell
+    Just (+1) <*> Just 10
+    -- Just 11
+  #+end_src
+- has identity
+  #+begin_src haskell
+    pure id <*> v = v
+  #+end_src
+- is [[Compositional]]
+  #+begin_src haskell
+    u = Just (+ 1)
+    v = Just (* 2)
+    w = Just 10
+    pure (.) <*> u <*> v <*> w
+    -- Just 21
+    u <*> (v <*> w)
+    -- Just 21
+    (.) <$> u <*> v <*> w
+    -- Just 21
+  #+end_src
+- is [[Homomorphic]]
+- is [[Interchangable]]
+*** Alternative

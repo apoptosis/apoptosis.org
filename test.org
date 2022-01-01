@@ -1,0 +1,5 @@
+:properties:
+:id: 2
+:end:
+#+title: Test Article
+[[id:1][western philosophy]]
