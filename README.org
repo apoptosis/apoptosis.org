@@ -2,7 +2,7 @@
 
 Episteme knowledge-base remote for the Apoptosis community.
 
-(Episteme)[https://github.com/apoptosis/episteme] is an Emacs distribution for collaborative knowledge-basing.
+[[https://github.com/apoptosis/episteme][Episteme]] is an Emacs distribution for collaborative knowledge-basing.
 
 * Adding the =episteme.org= Remote
 
