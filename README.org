@@ -1,4 +1,4 @@
-#+title: episteme.org
+#+title: apoptosis.org
 
 This repository is an [[https://github.com/apoptosis/episteme][Episteme]] remote from the Apoptosis community.
 
@@ -12,7 +12,7 @@ Just clone the repository into your remotes:
 
 #+begin_src shell
     cd ~/.config/episteme/remotes/
-    git clone https://github.com/apoptosis/episteme.org.git apoptosis
+    git clone https://github.com/apoptosis/apoptosis.org.git apoptosis
 #+end_src
 
 ** Interactively
@@ -23,5 +23,5 @@ Then press =a= to add a remote.
 
 #+begin_src text
     Name: apoptosis
-    URL: https://github.com/apoptosis/episteme.org.git
+    URL: https://github.com/apoptosis/apoptosis.org.git
 #+end_src
