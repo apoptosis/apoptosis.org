@@ -4,7 +4,7 @@ This repository is an [[https://github.com/apoptosis/episteme][Episteme]] remote
 
 [[https://github.com/apoptosis/episteme][Episteme]] is an Emacs distribution for collaborative knowledge-basing.
 
-* Adding the =episteme.org= Remote
+* Adding this repo as a remote
 
 ** Manually
 
@@ -17,9 +17,9 @@ Just clone the repository into your remotes:
 
 ** Interactively
 
-From the main-menu, use `R` to access the remotes menu.
+From the main-menu, use =R= to access the remotes menu.
 
-Then press `a` to add a remote.
+Then press =a= to add a remote.
 
 #+begin_src text
     Name: apoptosis
