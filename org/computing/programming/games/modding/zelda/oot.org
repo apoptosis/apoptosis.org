@@ -84,7 +84,10 @@ The output rom =zelda_ocarina_mq_dbg.*= should work fine.
 
 
 * Resources
+- n64 manual https://ultra64.ca/files/documentation/online-manuals/man-v5-2/allman52/
 - https://tcrf.net/Proto:The_Legend_of_Zelda:_Ocarina_of_Time_Master_Quest
 - Custom actor: https://github.com/Dragorn421/oot/commit/ab53375ab32b407671ac45607fd082569f6b3712
 - QoL patches: https://github.com/zeldaret/oot/compare/master...Dragorn421:mod_base_for_mods
-
+- Architecture overview: https://gist.github.com/Dragorn421/969e950d44db754fa13037696ce32bfe
+- Glossary https://hackmd.io/@EllipticEllipsis/ByPhfQbmt
+- Sharp Ocarina notes https://docs.google.com/document/d/13LzpGPkK9J1TVc_YGbkKRIgPKcWzW3ETNXi-xdBmIuI/edit#heading=h.y2dm6aor8sml
