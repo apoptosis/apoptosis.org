@@ -84,7 +84,20 @@ The output rom =zelda_ocarina_mq_dbg.*= should work fine.
 
 
 * Resources
+
 - https://tcrf.net/Proto:The_Legend_of_Zelda:_Ocarina_of_Time_Master_Quest
 - Custom actor: https://github.com/Dragorn421/oot/commit/ab53375ab32b407671ac45607fd082569f6b3712
 - QoL patches: https://github.com/zeldaret/oot/compare/master...Dragorn421:mod_base_for_mods
+- https://github.com/z64tools/z64hdr Headers for defines known memory addresses
+  / structures so that C code can be independently compiled and injected into
+  the game.
+- OOT/MM filesystem tool https://old.z64.me/tools/zzrtl.html
+- OOT/MM filesystem tool https://old.z64.me/tools/zzromtool.html
+- Custom actor toolkit, https://hylianmodding.com/?p=217
+- https://github.com/skawo/OoT-NPC-Maker
+- System for doing homebrew relocations: https://github.com/gamemasterplc/moduledemo
+
+
+
+
 
